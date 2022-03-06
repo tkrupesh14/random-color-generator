@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramdom Color Generator</title>
+    <style>
+  body {  
+margin: 0; 
+padding: 0;
+box-sizing: border-box;
+display: grid;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+}  
+button {  
+background-color: #fff;  
+color: black;  
+font-size: 25px;  
+margin: auto;  
+border: 2px solid;
+border-radius: 50px;
+margin-top: 10px;
+animation: visible 2s ease-in-out;
+}
+#color{
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+    width: auto;
+    font-size: 25px;
+    padding: 20px;
+    animation: visible 2s ease-in-out;
+    /* margin-top: 20px; */
+    
+} 
+@keyframes visible{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 50%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <button id="btn">Click Me To Generate</button>
+    <input id="color" value="" readonly>
+    <button id="btn2">Click Me To Copy Color</button>
+
+    <script>
+        let btn = document.getElementById("btn");
+        let color = document.getElementById("color");
+        let copy = document.getElementById("btn2");
+
+        color.style.display = "none";
+        copy.style.display = "none";
+
+        btn.addEventListener("click", function(){
+              var random =  Math.floor(Math.random()*16777215).toString(16);
+            
+              console.log(random);
+
+              document.body.style.backgroundColor = "#" + random;
+              color.value = "#" + random;
+              color.style.display = "block";
+        copy.style.display = "block";
+        });
+        copy.addEventListener("click", function(){
+            color.select();
+            navigator.clipboard.writeText(color.value);
+            alert(color.value + " Copied!");
+        })
+        
+    </script>
+</body>
+</html>
